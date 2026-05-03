@@ -1,9 +1,19 @@
+import { Suspense } from 'react'
 import './App.css'
 import Counter from './Counter'
 import Cricket from './Cricket'
+import Photos from './Photos'
 
 
+
+const fetchPhotos = async() => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/photos')
+  return res.json();
+}
 function App() {
+  const photosPromise = fetchPhotos();
+
+
   function Click1(){
     alert("Click 1")
   }
@@ -20,7 +30,14 @@ function App() {
   return (
     <>
         <div>
-          <h1>Get started</h1>
+            <Suspense fallback={<h3>Photos Are Coming.......</h3>}>
+              <Photos photosPromise={photosPromise}></Photos>
+            </Suspense>
+        </div>
+
+
+        <div>
+          <h1>Click for Counts</h1>
 
           <button onClick={Click1}>Click 1</button>
           <br />

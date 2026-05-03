@@ -1,3 +1,9 @@
+.card{
+  padding: 20px;
+  border: 2px solid yellow;
+}
+
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
